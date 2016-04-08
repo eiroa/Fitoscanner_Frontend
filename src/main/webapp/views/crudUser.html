@@ -1,0 +1,95 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<div class="jumbotron">
+		<h4>{{title}}</h4>
+		<h5 class="text-warning" ng-show="anon">Atención, el usuario dejará de ser anónimo al agregarle datos.</h5>
+	</div>
+
+	<div class="container-fluid">
+
+		<div class="bs-example">
+			<form name="crudUser" class="form-horizontal">
+
+
+				<div class="form-group col-xs-12 col-sm-3 col-lg-3">
+					<label for="inputCode" class="control-label col-xs-4">{{
+						'FORM_CODE' | translate}}</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="inputCode"
+							ng-model="inputCode" placeholder="{{ 'FORM_CODE' | translate}}">
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-6 col-lg-6">
+					<label for="inputNick" class="control-label col-xs-4">Nick</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="inputNick"
+							ng-model="inputNick" placeholder="Nick">
+					</div>
+				</div>
+
+				<div ng-hide="editingUser"class="form-group col-xs-12 col-sm-3 col-lg-3">
+					<label for="inputPass" class="control-label col-xs-4">Password</label>
+					<div class="col-xs-8">
+						<input type="password" class="form-control" id="inputPass"
+							ng-model="inputPass" placeholder="pass">
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-3 col-lg-4">
+					<label for="inputName" class="control-label col-xs-4">{{
+						'FORM_NAME' | translate}}</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="inputName"
+							ng-model="inputName" placeholder="{{ 'FORM_NAME' | translate}}">
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-3 col-lg-4">
+					<label for="inputSurname" class="control-label col-xs-4">{{
+						'FORM_SURNAME' | translate}}</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="inputSurname"
+							ng-model="inputSurname" placeholder="{{ 'FORM_SURNAME' | translate}}">
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-3 col-lg-4">
+					<label for="inputImei" class="control-label col-xs-2">IMEI</label>
+					<div class="col-xs-10">
+						<input type="text" class="form-control" id="inputImei"
+							ng-model="inputImei" placeholder="IMEI">
+					</div>
+				</div>
+				
+
+
+				<div class="form-group">
+					<label for="inputAdmin" class="control-label col-xs-6 " ng-style="checkAdmin()">{{
+						'FORM_ISADMIN' | translate}}</label>
+					<div class="col-xs-6" >
+						<input type="checkbox"  id="inputAdmin" class="" 
+							ng-model="inputAdmin" style=width:20px;height:20px;">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-xs-offset-2 col-xs-10">
+
+						<button type="submit" class="btn btn-success"
+							ng-hide="editingUser" ng-click="registerUser()">{{
+							'FORM_CONFIRM' | translate}}</button>
+
+						<button type="submit" class="btn btn-success"
+							ng-click="updateUser()" ng-show="editingUser">{{
+							'FORM_UPDATE' | translate}}</button>
+
+						<a type="button" class="btn btn-default" ng-href="#users">{{
+							'FORM_CANCEL' | translate}}</a>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>
+

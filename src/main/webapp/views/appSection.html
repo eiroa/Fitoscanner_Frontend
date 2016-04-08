@@ -1,0 +1,37 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<div class="jumbotron text-center">
+		<h3 class="page-header ">{{ 'LOGIN' | translate}}</h3>
+	</div>
+	<div class="container-fluid">
+	
+	<button class="button" ng-file-select ng-model="files">Upload using model $watch</button>
+	<br/>
+    <button class="button" ng-file-select ng-file-change="upload($files)">Upload on file change</button>
+    Drop File:
+    <div ng-file-drop ng-model="files" class="drop-box" 
+        drag-over-class="dragover" ng-multiple="true" allow-dir="true"
+        accept=".jpg,.png,.pdf">Drop Images or PDFs files here</div>
+    <div ng-no-file-drop>File Drag/Drop is not supported for this browser</div>
+<!-- 		<form class="form-horizontal"> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="inputUser" class="control-label col-xs-2">{{ 'FORM_NICK' | translate}}</label> -->
+<!-- 				<div class="col-xs-10"> -->
+<!-- 					<input type="text" class="form-control" id="inputNick" -->
+<!-- 						ng-model="inputNick" placeholder="{{ 'FORM_NICK' | translate}}"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="inputPassword" class="control-label col-xs-2">{{ 'Password' | translate}}</label> -->
+<!-- 				<div class="col-xs-10"> -->
+<!-- 					<input type="password" class="form-control" id="inputPassword" -->
+<!-- 						ng-model="inputPassword" placeholder="{{ 'password...' | translate}}"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<div class="col-xs-offset-2 col-xs-10"> -->
+<!-- 					<button type="submit" class="btn btn-primary" ng-click="login()">{{ 'FORM_CONFIRM' | translate}}</button> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</form> -->
+	</div>
+</div>

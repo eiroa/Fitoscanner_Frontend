@@ -1,0 +1,130 @@
+/* Space out content a bit */
+body {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.lvl-over {
+	/* applied to a drop target when a draggable object is over it */
+	border: 2px dashed #042A00 !important;
+}
+
+.lvl-target {
+	/* 
+				applied to all drop targets when a drag operation begins 
+				removed when the drag operation ends
+				used to indicate drop targets on a page 
+				*/
+	background-color: #ddd;
+	opacity: .5;
+}
+
+body.waiting-for-angular div#content-outer {
+	display: none;
+}
+
+body.waiting-for-angular div#initializing-panel {
+	display: block;
+	background: url(images/loading.gif) center center no-repeat;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#content-outer {
+	background: url(images/content_repeat.jpg) repeat-x;
+	background-color: white;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header, .marketing, .footer {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+	border-bottom: 1px solid #042A00;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+	margin-top: 0;
+	margin-bottom: 0;
+	line-height: 40px;
+	padding-bottom: 19px;
+}
+
+/* Custom page footer */
+.footer {
+	padding-top: 19px;
+	color: #777;
+	border-top: 1px solid #e5e5e5;
+}
+
+/* Customize container */
+@media ( min-width : 768px) {
+	.container {
+		max-width: 730px;
+	}
+}
+
+.container-narrow>hr {
+	margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.jumbotron .btn {
+	font-size: 21px;
+	padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+	margin: 40px 0;
+}
+
+.marketing p+h4 {
+	margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+	/* Remove the padding we set earlier */
+	.header, .marketing, .footer {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	/* Space out the masthead */
+	.header {
+		margin-bottom: 30px;
+	}
+	/* Remove the bottom border on the jumbotron for visual effect */
+	.jumbotron {
+		border-bottom: 0;
+	}
+}
+
+.logo {
+	position: absolute;
+	top: -8px;
+	left: 5px;
+}
+
+.borde_logo {
+	border-color: red;
+	border: 10px;
+}
+
+table thead tr th {
+	text-align: center;
+}
+
+table tbody tr td {
+	text-align: center;
+}

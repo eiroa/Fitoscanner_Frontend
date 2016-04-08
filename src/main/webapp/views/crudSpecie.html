@@ -1,0 +1,164 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<div class="jumbotron">
+		<h4>{{title}}</h4>
+	</div>
+
+	<div class="container-fluid">
+
+		<div class="bs-example">
+			<form name="crudSpecie" class="form-horizontal">
+
+
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+					<label for="inputName" class="control-label col-xs-4">{{
+						'FORM_NAME' | translate}}</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="inputName"
+							ng-model="inputName" placeholder="{{ 'FORM_NAME' | translate}}">
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+					<label for="inputScientificName" class="control-label col-xs-4">{{
+						'FORM_SCIENTIFICNAME' | translate}}</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="inputScientificName"
+							ng-model="inputScientificName" placeholder="{{ 'FORM_SCIENTIFICNAME' | translate}}">
+					</div>
+				</div>
+
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+					<label for="inputDescription" class="control-label col-xs-4">{{
+						'FORM_DESCRIPTION' | translate}}</label>
+					<div class="col-xs-8">
+						<textarea class="form-control" ng-model="inputDescription"
+							rows="4" placeholder="{{'FORM_DESCRIPTION' | translate}}"
+							id="inputDescription"></textarea>
+					</div>
+				</div>
+
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12"
+					ng-hide="editionMode()">
+					<legend></legend>
+					<label class="control-label col-xs-4">{{ 'FORM_ADD_IMAGE' |
+						translate}} 1</label>
+					<div class="col-xs-8">
+						<input type='file' ng-model='imageToRegister1' base-sixty-four-input>
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12"
+					ng-hide="editionMode()">
+					<legend></legend>
+					<label class="control-label col-xs-4">{{ 'FORM_ADD_IMAGE' |
+						translate}} 2</label>
+					<div class="col-xs-8">
+						<input type='file' ng-model='imageToRegister2' base-sixty-four-input>
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12"
+					ng-hide="editionMode()">
+					<legend></legend>
+					<label class="control-label col-xs-4">{{ 'FORM_ADD_IMAGE' |
+						translate}} 3</label>
+					<div class="col-xs-8">
+						<input type='file' ng-model='imageToRegister3' base-sixty-four-input>
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12"
+					ng-hide="editionMode()">
+					<legend></legend>
+					<label class="control-label col-xs-4">{{ 'FORM_ADD_IMAGE' |
+						translate}} 4</label>
+					<div class="col-xs-8">
+						<input type='file' ng-model='imageToRegister4' base-sixty-four-input>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-xs-offset-2 col-xs-10">
+
+						<button type="submit" class="btn btn-success"
+							ng-hide="editionMode()" ng-click="registerSpecie()">{{
+							'FORM_CONFIRM' | translate}}</button>
+
+						<button type="submit" class="btn btn-success"
+							ng-click="updateSpecie()" ng-show="editionMode()">{{
+							'FORM_UPDATE' | translate}}</button>
+
+						<a type="button" class="btn btn-default" ng-if="inCrudPlague" ng-href="#plague_species">{{
+							'FORM_CANCEL' | translate}}</a>
+						<a type="button" class="btn btn-default" ng-if="!(inCrudPlague)" ng-href="#plant_species">{{
+							'FORM_CANCEL' | translate}}</a>
+					</div>
+				</div>
+
+
+				<div ng-show="editionMode()">
+					<legend></legend>
+					<h3>{{ 'FORM_IMAGES' | translate}}</h3>
+					<br />
+					<div ng-repeat="img in images">
+						<div class="text-center" style="text-align: center;" >
+							<img   class="img-responsive" alt="Responsive image" style="display:block; margin:auto; "
+							ng-src="{{imageRestService}}/{{img.id}}"> <br/>{{img.name}}
+						</div>
+						<br/>
+						<div class="text-center">
+							<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+								<label class="control-label col-xs-4">{{
+									'FORM_REPLACE_IMAGE' | translate}}</label>
+								<div class="col-xs-8">
+									<input type='file' ng-model='img.imageRaw' base-sixty-four-input>
+								</div>
+							</div>
+							
+							<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+								<label for="inputName" class="control-label col-xs-4">{{
+									'FORM_NAME' | translate}}</label>
+								<div class="col-xs-8">
+									<input type="text" class="form-control" id="inputDescription"
+										ng-model="img.name"
+										placeholder="{{ 'FORM_NAME' | translate}}">
+								</div>
+							</div>
+							
+							<button type="submit" class="btn btn-success"
+							 ng-click="updateImage(img)">{{
+							'FORM_UPDATE_IMAGE' | translate}}</button>
+							<button type="submit" class="btn btn-danger"
+							 ng-click="confirmationDeleteImage(img)">{{
+							'FORM_DELETE_IMAGE' | translate}}</button>
+
+
+						</div>
+						<br />
+						<legend></legend>
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12"
+					ng-show="editionMode()">
+					<legend></legend>
+					<label class="control-label col-xs-2">{{ 'FORM_ADD_NEW_IMAGE' |
+						translate}}</label>
+					<div class="col-xs-8">
+						<input type='file' ng-model='imageToLoad' base-sixty-four-input>
+					</div>
+					<div class="col-xs-2">
+						<button class='btn btn-info' ng-click="addNewImage()" >{{ 'FORM_ADD_NEW_IMAGE' |
+						translate}}</button>
+					</div>
+				</div>
+
+
+
+
+
+			</form>
+		</div>
+	</div>
+</div>
+

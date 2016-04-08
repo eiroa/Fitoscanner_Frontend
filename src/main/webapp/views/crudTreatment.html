@@ -1,0 +1,216 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<div class="jumbotron">
+		<h4>{{title}}</h4>
+	</div>
+
+	<div class="container-fluid">
+
+		<div class="bs-example">
+			<form name="crudTreatment" class="form-horizontal">
+
+
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+					<label for="inputName" class="control-label col-xs-4">{{
+						'FORM_NAME' | translate}}</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="inputDescription"
+							ng-model="inputName" placeholder="{{ 'FORM_NAME' | translate}}">
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+					<label for="inputName" class="control-label col-xs-4">{{
+						'FORM_TYPE_QUANTITY' | translate}}</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="inputDescription"
+							ng-model="inputTypeQuantity" placeholder="Gr/ Kg / mL / L ...">
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+					<label for="inputName" class="control-label col-xs-4">{{
+						'FORM_QUANTITY' | translate}}</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="inputDescription"
+							ng-model="inputQuantity" placeholder="{{ 'FORM_QUANTITY' | translate}}">
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+					<label for="inputName" class="control-label col-xs-4">{{
+						'FORM_TYPE_FREQUENCY' | translate}}</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="inputDescription"
+							ng-model="inputTypeFrequency" placeholder="Horas/Dias/Semanas ...">
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+					<label for="inputName" class="control-label col-xs-4">{{
+						'FORM_FREQUENCY' | translate}}</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="inputDescription"
+							ng-model="inputFrequency" placeholder="{{ 'FORM_FREQUENCY' | translate}}">
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+					<label for="inputDescription" class="control-label col-xs-4">{{
+						'FORM_USE_EXPLANATION' | translate}}</label>
+					<div class="col-xs-8">
+						<textarea class="form-control" ng-model="inputUseExplanation"
+							rows="4" placeholder="{{'FORM_USE_EXPLANATION' | translate}}"
+							id="inputDescription"></textarea>
+					</div>
+				</div>
+
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+					<label for="inputDescription" class="control-label col-xs-4">{{
+						'FORM_DESCRIPTION' | translate}}</label>
+					<div class="col-xs-8">
+						<textarea class="form-control" ng-model="inputDescription"
+							rows="4" placeholder="{{'FORM_DESCRIPTION' | translate}}"
+							id="inputDescription"></textarea>
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+					<label for="inputName" class="control-label col-xs-4">Extra Link 1</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="inputDescription"
+							ng-model="inputExtraLink1" placeholder="Link 1">
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+					<label for="inputName" class="control-label col-xs-4">Extra Link 2</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="inputDescription"
+							ng-model="inputExtraLink2" placeholder="Link 2">
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+					<label for="inputName" class="control-label col-xs-4">Extra Link 3</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" id="inputDescription"
+							ng-model="inputExtraLink3" placeholder="Link 3">
+					</div>
+				</div>
+
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+					<label for="specieSelected" class="control-label col-xs-4">{{
+						'SELECT_TARGETS' | translate}}</label>
+					<div class="col-xs-7">
+						<select ng-model="specieSelected" id="specieSelected"
+							ng-options="sp as sp.name for sp in species"
+							ng-change="selectSpecie(specieSelected)" class="form-control"
+							style="width: 200px; margin-left: 15px;">
+							<option value="" label="{{ 'SELECT_OPTION' | translate}}"></option>
+
+						</select>
+					</div>
+					<span class="col-xs-1 glyphicon glyphicon-refresh"
+						tooltip="Reset species" style="font-size: 30px; cursor: pointer;"
+						ng-click="resetSpecies()"></span>
+				</div>
+
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+					<label class="control-label col-xs-4">{{ 'FORM_TARGETS' |
+						translate}}</label>
+					<div class="col-xs-8">{{speciesSelected}}</div>
+				</div>
+
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12"
+					ng-hide="editionMode()">
+					<legend></legend>
+					<label class="control-label col-xs-4">{{ 'FORM_ADD_IMAGE' |
+						translate}}</label>
+					<div class="col-xs-8">
+						<input type='file' ng-model='imageToLoad1' base-sixty-four-input>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-xs-offset-2 col-xs-10">
+
+						<button type="submit" class="btn btn-success"
+							ng-hide="editionMode()" ng-click="registerTreatment()">{{
+							'FORM_CONFIRM' | translate}}</button>
+
+						<button type="submit" class="btn btn-success"
+							ng-click="updateTreatment()" ng-show="editionMode()">{{
+							'FORM_UPDATE' | translate}}</button>
+
+						<a type="button" class="btn btn-default" ng-href="#treatments">{{
+							'FORM_CANCEL' | translate}}</a>
+					</div>
+				</div>
+
+
+				<div ng-show="editionMode()">
+					<legend></legend>
+					<h3>{{ 'FORM_IMAGES' | translate}}</h3>
+					<br />
+					<div ng-repeat="img in images">
+						<div class="text-center" style="text-align:center;">
+							<img   class="img-responsive" alt="Responsive image" style="display:block; margin:auto; "
+							ng-src="{{imageRestService}}/{{img.id}}"> <br/>{{img.name}}
+						</div>
+						<br/>
+						<div class="text-center">
+							<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+								<label class="control-label col-xs-4">{{
+									'FORM_REPLACE_IMAGE' | translate}}</label>
+								<div class="col-xs-8">
+									<input type='file' ng-model='img.imageRaw' base-sixty-four-input>
+								</div>
+							</div>
+							
+							<div class="form-group col-xs-12 col-sm-12 col-lg-12">
+								<label for="inputName" class="control-label col-xs-4">{{
+									'FORM_NAME' | translate}}</label>
+								<div class="col-xs-8">
+									<input type="text" class="form-control" id="inputDescription"
+										ng-model="img.name"
+										placeholder="{{ 'FORM_NAME' | translate}}">
+								</div>
+							</div>
+							
+							<button type="submit" class="btn btn-success"
+							 ng-click="updateImage(img)">{{
+							'FORM_UPDATE_IMAGE' | translate}}</button>
+							<button type="submit" class="btn btn-danger"
+							 ng-click="confirmationDeleteImage(img)">{{
+							'FORM_DELETE_IMAGE' | translate}}</button>
+
+
+						</div>
+						<br />
+						<legend></legend>
+					</div>
+				</div>
+				
+				<div class="form-group col-xs-12 col-sm-12 col-lg-12"
+					ng-show="editionMode()">
+					<legend></legend>
+					<label class="control-label col-xs-2">{{ 'FORM_ADD_NEW_IMAGE' |
+						translate}}</label>
+					<div class="col-xs-8">
+						<input type='file' ng-model='imageToLoad' base-sixty-four-input>
+					</div>
+					<div class="col-xs-2">
+						<button class='btn btn-info' ng-click="addNewImage()" >{{ 'FORM_ADD_NEW_IMAGE' |
+						translate}}</button>
+					</div>
+				</div>
+
+
+
+
+
+			</form>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,55 @@
+<div class="col-sm-3 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<div class="jumbotron">
+		<h4>{{ 'INDEX_TREATMENTS' | translate}}</h4>
+	</div>
+		<div class="container-fluid">
+				<a ng-href="#crudTreatment" type="submit" class="btn btn-primary" ng-click="newTreatment()"
+					
+					title="{{ 'FORM_NEW_TREATMENT' | translate}}">{{ 'FORM_NEW_TREATMENT' | translate}}</a>
+								<strong >
+			<mark class="text-success text-right col-lg-offset-4 col-md-offset-3" ng-show="filterOn()">
+			{{ 'FORM_FILTER_ON' | translate}} <span
+					class="glyphicon glyphicon-search text-success"></span></mark>
+				
+			</strong>
+
+	</div>
+
+	<h2 class="sub-header"></h2>
+	<button ng-click="tableParams.filter({})" ng-show="filterOn()"
+		class="btn btn-info center-block"><strong>{{ 'FORM_CLEAR_FILTER' |
+		translate}}</strong></button>
+
+
+	<style>
+tr:hover {
+	background: #B8E1B1;
+}
+</style>
+	<div class="table-responsive">
+
+		<table ng-table="tableParams" show-filter="true"
+			class="table ng-table-responsive">
+			<tr ng-repeat="treatment in $data" ng-mouseover="treatment.focused = true" ng-mouseleave="treatment.focused=false">
+				<td data-title="tableColumns['name']" sortable="'name'"
+					filter="{ 'name': 'text' }">{{treatment.name}}</td>
+				<td data-title="tableColumns['description']" sortable="'description'"
+					filter="{ 'description': 'text' }">{{treatment.description}}</td>
+				<td data-title="tableColumns['targets']" sortable="'targets'"
+					>{{processTargets(treatment.targets,',')}}</td>
+				<td data-title="tableColumns['images']" sortable="'images'"
+					>{{processImages(treatment.images)}}</td>
+				<td style="width: 20%;" data-title="tableColumns['actions']"><a type="button"
+					class="btn btn-warning" ng-href="#/crudTreatment"
+					ng-click="prepareEditTreatment(treatment)" ng-show="treatment.focused"
+					title="{{ 'FORM_EDIT' | translate}}{{treatment.nickname}}"><span
+						class="glyphicon glyphicon-pencil"></span></a>
+					<button type="button" class="btn btn-danger" ng-show="treatment.focused"
+						ng-click="confirmationDeleteTreatment(treatment.id, treatment.name)"
+						title="{{ 'FORM_DELETE' | translate}} {{treatment.nickname}}">
+						<span class="glyphicon glyphicon-trash"></span>
+					</button></td>
+			</tr>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,87 @@
+
+
+
+<div class="col-sm-3 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<div class="jumbotron">
+		<h4>{{ 'TITLE_USERS' | translate}}</h4>
+	</div>
+	<div class="container-fluid">
+	<a ng-href="#crudUser" type="submit" class="btn btn-primary "
+			ng-click="newUser()" title="{{ 'FORM_NEW_USER' | translate}}">{{
+			'FORM_NEW_USER' | translate}}</a> 
+			<strong >
+			<mark class="text-success text-right col-lg-offset-4 col-md-offset-3" ng-show="filterOn()">
+			{{ 'FORM_FILTER_ON' | translate}} <span
+					class="glyphicon glyphicon-search text-success"></span></mark>
+				
+			</strong>
+</div>
+
+
+	<h2 class="sub-header"></h2>
+	<button ng-click="tableParams.filter({})" ng-show="filterOn()"
+		class="btn btn-info center-block"><strong>{{ 'FORM_CLEAR_FILTER' |
+		translate}}</strong></button>
+
+
+	<style>
+tr:hover {
+	background: #B8E1B1;
+}
+</style>
+	<div class="table-responsive">
+
+		<table ng-table="tableParams" show-filter="true"
+			class="table ng-table-responsive">
+			<tr ng-repeat="usuario in $data" ng-mouseover="usuario.focused = true" ng-mouseleave="usuario.focused=false">
+				<td data-title="tableColumns['code']" sortable="'code'"
+					filter="{ 'code': 'text' }">{{usuario.code}}</td>
+				<td data-title="tableColumns['imei']" sortable="'imei'"
+					filter="{ 'imei': 'text' }">{{usuario.imei}}</td>
+				<td data-title="tableColumns['nick']" sortable="'nick'"
+					filter="{ 'nick': 'text' }">{{usuario.nick}}</td>
+				<td data-title="tableColumns['name']" sortable="'name'"
+					filter="{ 'name': 'text' }">{{usuario.name}}</td>
+				<td data-title="tableColumns['surname']" sortable="'surname'"
+					filter="{ 'surname': 'text' }">{{usuario.surname}}</td>
+				<td data-title="tableColumns['anon']"><span
+					class="glyphicon glyphicon-ok text-success"
+					ng-show="{{usuario.anonymous}}"></span> <span
+					class="glyphicon glyphicon-remove text-danger"
+					ng-hide="{{usuario.anonymous}}"></span></td>
+
+				<td data-title="tableColumns['admin']"><span
+					class="glyphicon glyphicon-ok text-success"
+					ng-show="{{usuario.admin}}"></span> <span
+					class="glyphicon glyphicon-remove text-danger"
+					ng-hide="{{usuario.admin}}"></span></td>
+				<td style="width: 20%;" data-title="tableColumns['actions']" >
+				  <a
+					type="button" style="padding:10px;" class="btn btn-success" ng-href="#/samples"
+					ng-click="checkUnresolvedSamples(usuario)" ng-show="usuario.focused"
+					title="{{ 'FORM_VIEW_UNRESOLVED_SAMPLES' | translate}}{{usuario.nickname}}"><span
+						class="glyphicon glyphicon-leaf"></span></a> 
+						
+				<a
+					type="button" class="btn btn-info" ng-href="#/samples"
+					ng-click="checkResolvedSamples(usuario)" ng-show="usuario.focused"
+					title="{{ 'FORM_VIEW_RESOLVED_SAMPLES' | translate}}{{usuario.nickname}}"><span
+						class="glyphicon glyphicon-list-alt"></span></a> 		
+						
+					<a type="button"
+					class="btn btn-warning" ng-href="#/crudUser"
+					ng-click="prepararEditarUsuario(usuario)" ng-show="usuario.focused"
+					title="{{ 'FORM_EDIT' | translate}}{{usuario.nickname}}"><span
+						class="glyphicon glyphicon-pencil"></span></a>
+						
+					<button type="button" class="btn btn-danger" ng-show="usuario.focused"
+						ng-click="confirmacionBorrarUsuario(usuario.id, usuario.imei)"
+						title="{{ 'FORM_DELETE' | translate}} {{usuario.nickname}}">
+						<span class="glyphicon glyphicon-trash"></span>
+					</button></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+</div>

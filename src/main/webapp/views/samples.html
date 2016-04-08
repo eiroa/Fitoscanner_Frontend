@@ -1,0 +1,105 @@
+
+
+
+<div class="col-sm-3 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<div class="jumbotron">
+		<h4 id="top">{{ title }}</h4>
+	</div>
+
+	<div class="container-fluid " ng-if="samples.length >0" style="padding:10px;">
+		<button ng-click="goTo('bottom')" class="btn btn-info ">
+			<span class="glyphicon glyphicon-map-marker"></span>
+			{{'VIEW_SAMPLE_LOCATIONS'|translate}}
+		</button>
+	</div>
+	<div class="jumbotron" ng-if="samples.length < 1">
+		<h3 ng-if="resolvingSample">{{'NO_UNRESOLVED_SAMPLES'|translate}}</h3>
+		<h3 ng-if="!resolvingSample">{{'NO_RESOLVED_SAMPLES'|translate}}</h3>
+	</div>
+
+	<div id="samples" ng-repeat="sample in samples">
+
+		<div ng-hide="sample.checking">
+			<button class="btn btn-info  col-xs-3" ng-click="sample.checking = true" >{{ 'FORM_OPEN' | translate}}</button>
+			<strong class="text-center col-xs-3">{{sample.name}}</strong>
+			<strong class="text-right col-xs-3">{{formatDateSimple(sample.sample_date)}}</strong>
+		</div>
+		<div ng-show="sample.checking" class="jumbotron">
+		<button class="btn btn-info" ng-click="sample.checking = false">{{ 'HIDE_DETAILS' | translate}}</button>
+		
+		<div class="container-fluid pull-right">
+					<button type="button" class="btn btn-danger"
+						ng-click="confirmationDeleteSample(sample.id, sample.name)"
+						title="{{ 'FORM_DELETE' | translate}} {{sample.name}}">
+						<span class="glyphicon glyphicon-trash"></span>
+					</button>
+				</div>
+			<div>
+			<h2 ng-show="sample.resolved" style="color:green">{{'FORM_SPECIE_DETERMINED'| translate}}: {{sample.specie_name_resolved}}</h2>
+				<h2 ng-show="sample.resolved" style="color:blue">{{'INDEX_TREATMENTS'| translate}}: {{sample.treatment_names_resolved}}</h2>
+				<h2 ng-show="sample.resolved" style="color:blue" >{{'FORM_RESOLUTION_DATE'|translate}}: {{formatDateSimple(sample.date_treatment_obtained)}}</h2>
+				<h2>{{'INDEX_TITLE'|translate}}: {{sample.name}}</h2>
+				<div class="container-fluid pull-right" ng-if="resolvingSample">
+					<a ng-href="#resolve" type="submit" class="btn btn-primary" ng-click="resolveSample(sample)"
+						title="{{ 'FORM_RESOLVE_SPECIE' | translate}}">{{
+						'FORM_RESOLVE_SPECIE' | translate}}</a> <br />
+				</div>
+			</div>
+			<p>Imei: {{sample.user.imei}}</p>
+			<p>{{ 'FORM_DATE' | translate}}:
+				{{formatDateSimple(sample.sample_date)}}</p>
+			<div>
+				<h3>
+					<u> {{ 'GEOLOCATION' | translate}}</u>
+				</h3>
+				<p ng-if="sample.lat">Lat: {{sample.lat}}</p>
+				<p ng-if="sample.lat">Lon: {{sample.lon}}</p>
+				<h3 ng-hide="sample.lat"> {{ 'NO_GPS_DATA' | translate}}</h3>
+
+			</div>
+
+			<div>
+				{{ 'FORM_IMAGES' | translate}}: {{sample.images.length}}
+				<div ng-repeat="img in sample.images">
+					<div class="container-fluid" >
+							<img  class="img-responsive" alt="Responsive image" style="display:block; margin:auto; "
+							ng-src="{{imageRestService}}/{{img.id}}"> <br/>{{img.name}}
+						</div>
+					<br />
+				</div>
+			</div>
+
+
+			<!--  -->
+
+
+
+		</div>
+		<legend></legend>
+		
+	</div>
+
+
+	<!--  -->
+	<div ng-if="samples.length >0">
+		<p id="bottom" class="text-success">{{ 'SAMPLE_LOCATIONS' |
+			translate}}</p>
+		<div style="padding: 10px;">
+			<button ng-click="goTo('top')" class="btn btn-info ">
+				<span class="glyphicon glyphicon-circle-arrow-up"></span>
+			</button>
+		</div>
+
+
+		<leaflet defaults="defaults" markers="markers"
+			event-broadcast="events" leafletMap="leafletMap" height="480px"
+			width="700px"></leaflet>
+	</div>
+
+
+
+
+
+</div>
+
+</div>

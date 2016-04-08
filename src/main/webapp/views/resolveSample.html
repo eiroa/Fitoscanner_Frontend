@@ -1,0 +1,162 @@
+
+
+
+<div class="col-sm-3 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<div class="jumbotron">
+		<h4 id="top">{{ 'TITLE_RESOLVE_SAMPLE' | translate}}</h4>
+	</div>
+
+
+
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class=" col-xs-12 col-md-6 col-lg-5 "
+				style="outline: 1px solid green;">
+				<div>
+					<h4 style="margin-top: 24px;">{{ 'FORM_DATA_TO_SOLVE' | translate}}</h4>
+				</div>
+				<div class="text-center" style="padding: 25px;">
+					<button type="button" style="" class="btn btn-success"
+						ng-show="specieSelected" ng-click="confirmationResolveSample()"
+						title="{{ 'FORM_SAVE_RESOLUTION' | translate}}">
+						{{ 'FORM_SAVE_RESOLUTION' | translate}} 
+					</button>
+				</div>
+				<div class=" ">
+					<form name="resolveSample" class="">
+						<div class="form-group ">
+							<label for="specieSelected" class="control-label ">{{
+								'SELECT_SPECIE_TO_DETERMINE' | translate}}</label>
+							<div class="">
+								<select ng-model="specieSelected" id="specieSelected"
+									ng-options="sp as sp.name for sp in species"
+									ng-change="selectSpecie(specieSelected)"
+									class="form-control text-info"
+									style="width: 200px; margin-left: 15px;">
+									<option class="text-info" value=""
+										label="{{ 'SELECT_OPTION' | translate}}"></option>
+
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
+
+							<label class="control-label  ">{{
+								'FORM_SPECIE_DETERMINED' | translate}}</label>
+							<div 
+								style="font-size: large; font-style: italic; color: green;">{{specieSelected.name}}</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label ">{{ 'INDEX_TREATMENTS' |
+								translate}}</label>
+							<div class="" style="font-size: large;">
+								<p style="padding: 10px"
+									ng-repeat="s in specieSelected.treatmentNames">
+									<span class="glyphicon glyphicon-arrow-right"></span> {{ s }}
+								</p>
+							</div>
+						</div>
+
+						<div class="text-center">
+							<p ng-show="specieSelected.images[0] != null">
+								<img class="img-responsive" alt="Responsive image"
+									style="display: block; margin: auto;"
+									ng-src="{{imageRestService}}/{{specieSelected.images[0].id}}">
+							</p>
+						</div>
+
+					</form>
+				</div>
+
+
+			</div>
+
+
+			<div class=" jumbotron col-md-6 col-lg-6 col-xs-12 col-md-offset-1">
+
+				<div>
+					<h4>{{ 'FORM_SAMPLE_DATA' | translate}}</h4>
+				</div>
+				<div class="row">
+					<h5 class="col-lg-4">
+						{{'INDEX_TITLE'|translate}}:
+						</h4>
+						<h5 class="col-lg-8">
+							{{sample.name}}
+							</h4>
+				</div>
+
+				<div class="row">
+					<h5 class="col-lg-4">Imei:</h5>
+					<h5 class="col-lg-4">{{sample.user.imei}}</h5>
+				</div>
+
+				<div class="row">
+					<h5 class="col-lg-4">{{ 'FORM_DATE' | translate}}:</h5>
+					<h5 class="col-lg-8">{{formatDateSimple(sample.sample_date)}}</h5>
+				</div>
+
+				<div class="row">
+					<h5 class="col-lg-4" ng-show="sample.lat">
+						{{ 'GEOLOCATION' | translate}}
+						</h4>
+						<h5 class="col-lg-4" ng-show="sample.lat" style=""sample.lat">Lat
+							{{sample.lat}}</h5>
+						<h5 class="col-lg-4" ng-show="sample.lat" style=""sample.lat">Lon
+							{{sample.lon}}</h5>
+						<h4 ng-hide="sample.lat" class="text-warning">{{
+							'NO_GPS_DATA' | translate}}</h4>
+				</div>
+
+				<div>
+					<div class="row">
+						<h4 class="text-info col-lg-6 col-xs-6">{{ 'FORM_IMAGES' |
+							translate}}</h4>
+							<span class="col-lg-1 col-xs-6 text-info glyphicon glyphicon-collapse-down "
+							 ng-click="isCollapse = !isCollapse"
+							 style="margin-top: 5px; font-size:1.5em; cursor:pointer"></span>
+
+					</div>
+					<div collapse="isCollapse">
+						<div class="">
+							<ul id="navlist" class="well">
+								<li ng-repeat="img in sample.images" >
+								<a href="{{imageRestService}}/{{img.id}}"
+										data-lightbox="img.id"><img id="img.name"
+										class="img-responsive" alt="Responsive image"
+										style="display: inline; margin: auto; width: 50px; height: 50px;"
+										tooltip-placement="bottom"
+										tooltip="{{img.name}}"										
+										ng-src="{{imageRestService}}/{{img.id}}"> </a> 
+								</li>
+							</ul> 
+						</div>
+
+					</div>
+				</div>
+
+
+				<!--  -->
+
+				<div class="text-center text-info" ng-if="sample.lat">
+					<leaflet class="img-responsive" alt="Responsive image"
+						defaults="defaults" lf-center="center" markers="markers"
+						event-broadcast="events" leafletMap="leafletMap" height="480px"
+						width="860px"></leaflet>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+</div>
+
